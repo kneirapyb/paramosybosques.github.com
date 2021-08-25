@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1237px;
+            height: 788px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/ASOPALMMicrozonificacionPredio_0.js"></script>
+        <script src="data/ASOPALMCobertura_UsoActual_1.js"></script>
+        <script src="data/ASOPALMImplementacionesPG_2.js"></script>
+        <script src="data/ASOPALMImplementacionesLN_3.js"></script>
+        <script src="data/ASOPALMImplementacionesPT_4.js"></script>
+        <script src="data/ASOPALMPredios_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_ASOPALMMicrozonificacionPredio_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACTIVIDAD'] !== null ? autolinker.link(feature.properties['ACTIVIDAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_MICRO'] !== null ? autolinker.link(feature.properties['ID_MICRO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MICROZON'] !== null ? autolinker.link(feature.properties['MICROZON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DESCRIP'] !== null ? autolinker.link(feature.properties['DESCRIP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESTADO'] !== null ? autolinker.link(feature.properties['ESTADO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_ha'] !== null ? autolinker.link(feature.properties['AREA_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Length'] !== null ? autolinker.link(feature.properties['SHAPE_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ASOPALMMicrozonificacionPredio_0_0(feature) {
+            switch(String(feature.properties['MICROZON'])) {
+                case '5006':
+                    return {
+                pane: 'pane_ASOPALMMicrozonificacionPredio_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5005':
+                    return {
+                pane: 'pane_ASOPALMMicrozonificacionPredio_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,201,129,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5003':
+                    return {
+                pane: 'pane_ASOPALMMicrozonificacionPredio_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,230,135,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '5004':
+                    return {
+                pane: 'pane_ASOPALMMicrozonificacionPredio_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,150,65,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ASOPALMMicrozonificacionPredio_0');
+        map.getPane('pane_ASOPALMMicrozonificacionPredio_0').style.zIndex = 400;
+        map.getPane('pane_ASOPALMMicrozonificacionPredio_0').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMMicrozonificacionPredio_0 = new L.geoJson(json_ASOPALMMicrozonificacionPredio_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMMicrozonificacionPredio_0',
+            layerName: 'layer_ASOPALMMicrozonificacionPredio_0',
+            pane: 'pane_ASOPALMMicrozonificacionPredio_0',
+            onEachFeature: pop_ASOPALMMicrozonificacionPredio_0,
+            style: style_ASOPALMMicrozonificacionPredio_0_0,
+        });
+        bounds_group.addLayer(layer_ASOPALMMicrozonificacionPredio_0);
+        map.addLayer(layer_ASOPALMMicrozonificacionPredio_0);
+        function pop_ASOPALMCobertura_UsoActual_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACTIVIDAD'] !== null ? autolinker.link(feature.properties['ACTIVIDAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DONATARIO'] !== null ? autolinker.link(feature.properties['DONATARIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_COBERT'] !== null ? autolinker.link(feature.properties['ID_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N1_COBERT'] !== null ? autolinker.link(feature.properties['N1_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N2_COBERT'] !== null ? autolinker.link(feature.properties['N2_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N3_COBERT'] !== null ? autolinker.link(feature.properties['N3_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N4_COBERT'] !== null ? autolinker.link(feature.properties['N4_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N5_COBERT'] !== null ? autolinker.link(feature.properties['N5_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['N6_COBERT'] !== null ? autolinker.link(feature.properties['N6_COBERT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMENCLAT'] !== null ? autolinker.link(feature.properties['NOMENCLAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COBERTURA'] !== null ? autolinker.link(feature.properties['COBERTURA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FUENTE'] !== null ? autolinker.link(feature.properties['FUENTE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['USO_ACT'] !== null ? autolinker.link(feature.properties['USO_ACT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SUB_CATEG_USO_ACT'] !== null ? autolinker.link(feature.properties['SUB_CATEG_USO_ACT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBSERV'] !== null ? autolinker.link(feature.properties['OBSERV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_ha'] !== null ? autolinker.link(feature.properties['AREA_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Length'] !== null ? autolinker.link(feature.properties['SHAPE_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ASOPALMCobertura_UsoActual_1_0(feature) {
+            switch(String(feature.properties['COBERTURA'])) {
+                case 'Tierras desnudas y degradadas':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,204,224,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Cebolla':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,235,190,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Herbazal denso de tierra firme arbolado':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,218,145,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Herbazal denso de tierra firme con arbustos':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,197,186,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Herbazal denso de tierra firme no arbolado':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(205,215,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hortalizas':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,211,127,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pastos limpios':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,237,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Ríos (50 m)':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(151,219,242,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arbustal denso bajo':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,213,129,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arbustal denso alto':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,217,106,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arbustal abierto bajo':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,222,145,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosque abierto alto de tierra firme':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(130,181,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bosque denso alto de tierra firme':
+                    return {
+                pane: 'pane_ASOPALMCobertura_UsoActual_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(112,245,122,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ASOPALMCobertura_UsoActual_1');
+        map.getPane('pane_ASOPALMCobertura_UsoActual_1').style.zIndex = 401;
+        map.getPane('pane_ASOPALMCobertura_UsoActual_1').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMCobertura_UsoActual_1 = new L.geoJson(json_ASOPALMCobertura_UsoActual_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMCobertura_UsoActual_1',
+            layerName: 'layer_ASOPALMCobertura_UsoActual_1',
+            pane: 'pane_ASOPALMCobertura_UsoActual_1',
+            onEachFeature: pop_ASOPALMCobertura_UsoActual_1,
+            style: style_ASOPALMCobertura_UsoActual_1_0,
+        });
+        bounds_group.addLayer(layer_ASOPALMCobertura_UsoActual_1);
+        map.addLayer(layer_ASOPALMCobertura_UsoActual_1);
+        function pop_ASOPALMImplementacionesPG_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO_IMPLEMENT'] !== null ? autolinker.link(feature.properties['TIPO_IMPLEMENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESTADO'] !== null ? autolinker.link(feature.properties['ESTADO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_ha'] !== null ? autolinker.link(feature.properties['AREA_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Length'] !== null ? autolinker.link(feature.properties['Shape_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.2,
+            color: '#7dee32',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.4,
+            color: '#b971e8',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.6,
+            color: '#00f2fe',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.2,
+            color: '#7dee32',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.4,
+            color: '#b971e8',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        var pattern_ASOPALMImplementacionesPG_2_0 = new L.StripePattern({
+            weight: 0.5,
+            spaceWeight: 1.6,
+            color: '#00f2fe',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ASOPALMImplementacionesPG_2_0.addTo(map);
+        function style_ASOPALMImplementacionesPG_2_0(feature) {
+            switch(String(feature.properties['TIPO_IMPLEMENT'])) {
+                case 'BANCO DE FORRAJE':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_ASOPALMImplementacionesPG_2_0,
+                interactive: true,
+            }
+                    break;
+                case 'MEJORAMIENTO DE PRADERAS':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_ASOPALMImplementacionesPG_2_0,
+                interactive: true,
+            }
+                    break;
+                case 'ROTACION POTREROS':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_ASOPALMImplementacionesPG_2_0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        function style_ASOPALMImplementacionesPG_2_1(feature) {
+            switch(String(feature.properties['TIPO_IMPLEMENT'])) {
+                case 'BANCO DE FORRAJE':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'MEJORAMIENTO DE PRADERAS':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'ROTACION POTREROS':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPG_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ASOPALMImplementacionesPG_2');
+        map.getPane('pane_ASOPALMImplementacionesPG_2').style.zIndex = 402;
+        map.getPane('pane_ASOPALMImplementacionesPG_2').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMImplementacionesPG_2 = new L.geoJson.multiStyle(json_ASOPALMImplementacionesPG_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMImplementacionesPG_2',
+            layerName: 'layer_ASOPALMImplementacionesPG_2',
+            pane: 'pane_ASOPALMImplementacionesPG_2',
+            onEachFeature: pop_ASOPALMImplementacionesPG_2,
+            styles: [style_ASOPALMImplementacionesPG_2_0,style_ASOPALMImplementacionesPG_2_1,]
+        });
+        bounds_group.addLayer(layer_ASOPALMImplementacionesPG_2);
+        map.addLayer(layer_ASOPALMImplementacionesPG_2);
+        function pop_ASOPALMImplementacionesLN_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESTADO'] !== null ? autolinker.link(feature.properties['ESTADO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO_IMPLEMENT'] !== null ? autolinker.link(feature.properties['TIPO_IMPLEMENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONGITUD'] !== null ? autolinker.link(feature.properties['LONGITUD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Length'] !== null ? autolinker.link(feature.properties['Shape_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ASOPALMImplementacionesLN_3_0() {
+            return {
+                pane: 'pane_ASOPALMImplementacionesLN_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        function style_ASOPALMImplementacionesLN_3_1() {
+            return {
+                pane: 'pane_ASOPALMImplementacionesLN_3',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ASOPALMImplementacionesLN_3');
+        map.getPane('pane_ASOPALMImplementacionesLN_3').style.zIndex = 403;
+        map.getPane('pane_ASOPALMImplementacionesLN_3').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMImplementacionesLN_3 = new L.geoJson.multiStyle(json_ASOPALMImplementacionesLN_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMImplementacionesLN_3',
+            layerName: 'layer_ASOPALMImplementacionesLN_3',
+            pane: 'pane_ASOPALMImplementacionesLN_3',
+            onEachFeature: pop_ASOPALMImplementacionesLN_3,
+            styles: [style_ASOPALMImplementacionesLN_3_0,style_ASOPALMImplementacionesLN_3_1,]
+        });
+        bounds_group.addLayer(layer_ASOPALMImplementacionesLN_3);
+        map.addLayer(layer_ASOPALMImplementacionesLN_3);
+        function pop_ASOPALMImplementacionesPT_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIPO_IMPLEMENT'] !== null ? autolinker.link(feature.properties['TIPO_IMPLEMENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESTADO'] !== null ? autolinker.link(feature.properties['ESTADO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COORD_X'] !== null ? autolinker.link(feature.properties['COORD_X'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COORD_Y'] !== null ? autolinker.link(feature.properties['COORD_Y'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ASOPALMImplementacionesPT_4_0(feature) {
+            switch(String(feature.properties['TIPO_IMPLEMENT'])) {
+                case 'Bebederos':
+                    return {
+                pane: 'pane_ASOPALMImplementacionesPT_4',
+                shape: 'triangle',
+                radius: 6.4,
+                opacity: 1,
+                color: 'rgba(255,1,90,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,141,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ASOPALMImplementacionesPT_4');
+        map.getPane('pane_ASOPALMImplementacionesPT_4').style.zIndex = 404;
+        map.getPane('pane_ASOPALMImplementacionesPT_4').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMImplementacionesPT_4 = new L.geoJson(json_ASOPALMImplementacionesPT_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMImplementacionesPT_4',
+            layerName: 'layer_ASOPALMImplementacionesPT_4',
+            pane: 'pane_ASOPALMImplementacionesPT_4',
+            onEachFeature: pop_ASOPALMImplementacionesPT_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_ASOPALMImplementacionesPT_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_ASOPALMImplementacionesPT_4);
+        map.addLayer(layer_ASOPALMImplementacionesPT_4);
+        function pop_ASOPALMPredios_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COD_SUB_AC'] !== null ? autolinker.link(feature.properties['COD_SUB_AC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DONATARIO'] !== null ? autolinker.link(feature.properties['DONATARIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_CAD_VAL'] !== null ? autolinker.link(feature.properties['ID_CAD_VAL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ID_PR_DON</th>\
+                        <td>' + (feature.properties['ID_PR_DON'] !== null ? autolinker.link(feature.properties['ID_PR_DON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_PREDIO'] !== null ? autolinker.link(feature.properties['ID_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_PREDIO'] !== null ? autolinker.link(feature.properties['NOM_PREDIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['VEREDA'] !== null ? autolinker.link(feature.properties['VEREDA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MUNICIPIO'] !== null ? autolinker.link(feature.properties['MUNICIPIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DEPTO'] !== null ? autolinker.link(feature.properties['DEPTO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_BENEF'] !== null ? autolinker.link(feature.properties['NOM_BENEF'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CEDULA'] !== null ? autolinker.link(feature.properties['CEDULA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TENENCIA'] !== null ? autolinker.link(feature.properties['TENENCIA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TIENE_COLEC'] !== null ? autolinker.link(feature.properties['TIENE_COLEC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CAD_VAL'] !== null ? autolinker.link(feature.properties['CAD_VAL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CULTIVO'] !== null ? autolinker.link(feature.properties['CULTIVO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FECHA_INSTALACION'] !== null ? autolinker.link(feature.properties['FECHA_INSTALACION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESTADO'] !== null ? autolinker.link(feature.properties['ESTADO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['RESP_RECOL'] !== null ? autolinker.link(feature.properties['RESP_RECOL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DATE_LEV'] !== null ? autolinker.link(feature.properties['DATE_LEV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_MISION_ha'] !== null ? autolinker.link(feature.properties['AREA_MISION_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PRECISIÓN'] !== null ? autolinker.link(feature.properties['PRECISIÓN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HERRAMIENTA'] !== null ? autolinker.link(feature.properties['HERRAMIENTA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE_AP'] !== null ? autolinker.link(feature.properties['NOMBRE_AP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DENTRO_AP'] !== null ? autolinker.link(feature.properties['DENTRO_AP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FUERA_AP'] !== null ? autolinker.link(feature.properties['FUERA_AP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBSERV'] !== null ? autolinker.link(feature.properties['OBSERV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AREA_ha'] !== null ? autolinker.link(feature.properties['AREA_ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Length'] !== null ? autolinker.link(feature.properties['SHAPE_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HIPERVINCULO'] !== null ? autolinker.link(feature.properties['HIPERVINCULO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FOTO_MICROZON'] !== null ? autolinker.link(feature.properties['FOTO_MICROZON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INDICADORES'] !== null ? autolinker.link(feature.properties['INDICADORES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FOTO_INDICADOR'] !== null ? autolinker.link(feature.properties['FOTO_INDICADOR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ORDEN'] !== null ? autolinker.link(feature.properties['ORDEN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ASOPALMPredios_5_0() {
+            return {
+                pane: 'pane_ASOPALMPredios_5',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ASOPALMPredios_5');
+        map.getPane('pane_ASOPALMPredios_5').style.zIndex = 405;
+        map.getPane('pane_ASOPALMPredios_5').style['mix-blend-mode'] = 'normal';
+        var layer_ASOPALMPredios_5 = new L.geoJson(json_ASOPALMPredios_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ASOPALMPredios_5',
+            layerName: 'layer_ASOPALMPredios_5',
+            pane: 'pane_ASOPALMPredios_5',
+            onEachFeature: pop_ASOPALMPredios_5,
+            style: style_ASOPALMPredios_5_0,
+        });
+        bounds_group.addLayer(layer_ASOPALMPredios_5);
+        map.addLayer(layer_ASOPALMPredios_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/ASOPALMPredios_5.png" /> ASOPALM Predios': layer_ASOPALMPredios_5,'ASOPALM ImplementacionesPT<br /><table><tr><td style="text-align: center;"><img src="legend/ASOPALMImplementacionesPT_4_Bebederos0.png" /></td><td>Bebederos</td></tr></table>': layer_ASOPALMImplementacionesPT_4,'<img src="legend/ASOPALMImplementacionesLN_3.png" /> ASOPALM ImplementacionesLN': layer_ASOPALMImplementacionesLN_3,'ASOPALM ImplementacionesPG<br /><table><tr><td style="text-align: center;"><img src="legend/ASOPALMImplementacionesPG_2_BANCODEFORRAJE0.png" /></td><td>BANCO DE FORRAJE</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMImplementacionesPG_2_MEJORAMIENTODEPRADERAS1.png" /></td><td>MEJORAMIENTO DE PRADERAS</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMImplementacionesPG_2_ROTACIONPOTREROS2.png" /></td><td>ROTACION POTREROS</td></tr></table>': layer_ASOPALMImplementacionesPG_2,'ASOPALM Cobertura_UsoActual<br /><table><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Tierrasdesnudasydegradadas0.png" /></td><td>Tierras desnudas y degradadas</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Cebolla1.png" /></td><td>Cebolla</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Herbazaldensodetierrafirmearbolado2.png" /></td><td>Herbazal denso de tierra firme arbolado</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Herbazaldensodetierrafirmeconarbustos3.png" /></td><td>Herbazal denso de tierra firme con arbustos</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Herbazaldensodetierrafirmenoarbolado4.png" /></td><td>Herbazal denso de tierra firme no arbolado</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Hortalizas5.png" /></td><td>Hortalizas</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Pastoslimpios6.png" /></td><td>Pastos limpios</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Ríos50m7.png" /></td><td>Ríos (50 m)</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Arbustaldensobajo8.png" /></td><td>Arbustal denso bajo</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Arbustaldensoalto9.png" /></td><td>Arbustal denso alto</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Arbustalabiertobajo10.png" /></td><td>Arbustal abierto bajo</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Bosqueabiertoaltodetierrafirme11.png" /></td><td>Bosque abierto alto de tierra firme</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMCobertura_UsoActual_1_Bosquedensoaltodetierrafirme12.png" /></td><td>Bosque denso alto de tierra firme</td></tr></table>': layer_ASOPALMCobertura_UsoActual_1,'ASOPALM MicrozonificacionPredio<br /><table><tr><td style="text-align: center;"><img src="legend/ASOPALMMicrozonificacionPredio_0_Usointensivo0.png" /></td><td>Uso intensivo</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMMicrozonificacionPredio_0_Usosostenible1.png" /></td><td>Uso sostenible</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMMicrozonificacionPredio_0_Áreasprioritariasparalarestauraciónecológica2.png" /></td><td>Áreas prioritarias para la restauración ecológica</td></tr><tr><td style="text-align: center;"><img src="legend/ASOPALMMicrozonificacionPredio_0_Áreasprioritariasparasupreservación3.png" /></td><td>Áreas prioritarias para su preservación</td></tr></table>': layer_ASOPALMMicrozonificacionPredio_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
